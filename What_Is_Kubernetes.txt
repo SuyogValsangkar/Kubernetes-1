@@ -47,7 +47,7 @@ Core Components of K8s
         - but will sychronize the database read and writes
         - Common practice to host DBs outside K8s cluster
 
-K8s Architecture
+K8s Architecture 
 
 
 
