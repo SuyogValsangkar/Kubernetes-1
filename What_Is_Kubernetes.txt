@@ -1,3 +1,54 @@
 What is Kubernetes?
 
+Official Definition:
+    open source container orcestration framework 
+
+- It helps manage applications that are made up of containers and helps manage these applications in different environments
+
+Container orcestration tools offer:
+    - High availibility 
+    - Scalibility (high performance)
+    - Disaster recovery - backup and store 
+
+Core Components of K8s 
+    - Node and Pods
+        - Node is a simple server (physical or virtual machine)
+        - Pod, smallest unit of K8s, abstraction over container (creates layer over container, so you only interact with the kubernetes layer)
+        - Usually 1 application container per pod
+        - Each pod will get its own internal IP address so they can communicate
+        - Pods are ephemeral (they can die easily) but a new one will be created, and it will get a new IP address
+            - Because of above: we have a *Service*, service is a permanent IP adress for each pod. Service and it's IP will stay even if the pod dies
+            - External service: so that people can access application.
+            - Internal service: so that people cannot access certain pods
+
+            - Ingress: if we use service URLs, then the url is the https protocol followed by the IP address, which is not good. 
+                       so requests for a pod containing an application will first go to the ingress, which forwards to the external service
+
+    - ConfigMap: External configuration of your application
+        - contains configuration data, which is connected to the pod so the pod recives all the data
+        - Don't put password and credentials in ConfigMap
+            - So we have Secret: used to store secret (stored in base64). And connect it to pod
+    
+    - Volumes: 
+        - attatches physical storage to a pod (such as a database pod)
+        - can be local or remote storage, this is because K8s cluster does not manage data persistence (so user is respondible)
+
+    * service is also a load balancer, forwards requests to pods that are less busy
+
+    Deployments: blueprints for pods so K8s knows how many replicas of a pod you want to run 
+        - in practice, you are creating deployments not pods
+        - can scale up and scale down 
+        - Abstraction of pods, makes it easy to work with 
+        - BUT WE CANNOT REPLICATE DATABASE, This is because databases have states. 
+          Clones of DBs will need to access the same datastorage (and you need a read-write manager)
+        
+    StatefulSet: Meant for Databases
+        - will take care of replicating DBs and scaling them 
+        - but will sychronize the database read and writes
+        - Common practice to host DBs outside K8s cluster
+
+K8s Architecture
+
+
+
 
