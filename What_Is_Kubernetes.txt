@@ -48,6 +48,7 @@ Core Components of K8s
         - Common practice to host DBs outside K8s cluster
 
 K8s Architecture 
+    - 
 
 
 
